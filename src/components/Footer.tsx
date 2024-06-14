@@ -54,19 +54,19 @@ const Footer = () => {
 
   const RegisterMsg = async (name: string, email: string, msg: string) => {
     try {
-      const response = await fetch("URL_DEL_TUO_ENDPOINT", {
+      const response = await fetch("http://localhost:8080/message/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, msg }),
+        body: JSON.stringify({ fullName: name, email: email, message: msg }),
       });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-
-      const data = await response.json();
+      const text = await response.text();
+      const data = await JSON.parse(text);
       alert("Your message has been sent successfully!");
       console.log("Success:", data);
     } catch (error) {
@@ -136,7 +136,7 @@ const Footer = () => {
         <p className="w-full h-12 mt-5 bg-black flex items-center justify-center gap-5">
           <button className="bg-gray-300 text-black text-xl w-16 rounded-md hover:bg-slate-400">
             <a
-              href="https://github.com/Mamadou-mbaye/portfolio-ts"
+              href="https://github.com/Mamadou-mbaye/porfolio-react.git"
               target="_blank"
               rel="noreferrer"
             >
@@ -151,116 +151,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-/*const Footer = () => {
-  const area_form = document.getElementById("area-form") as HTMLFormElement;
-  const full_name = document.getElementById("full-name") as HTMLInputElement;
-  const email = document.getElementById("email") as HTMLInputElement;
-  const textarea = document.getElementById("textarea") as HTMLInputElement;
-  const submit_msg = document.getElementById("submit-msg") as HTMLButtonElement;
-
-  const isEmailValid = (email: string): boolean => {
-    // Regex per validare un indirizzo email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const handleMessage = (): void => {
-
-    const full_name_value = full_name.value.trim();
-    const email_value = email.value.trim();
-    const textarea_value = textarea.value.trim();
-
-    const msg_input = [full_name, email, textarea];
-
-    const isFullNameValid = full_name_value !== "";
-    const isEmailValidFlag = isEmailValid(email_value);
-    const isTextareaValid = textarea_value !== "";
-
-    if (!isFullNameValid || !isEmailValidFlag || !isTextareaValid) {
-      msg_input.forEach((element) => {
-        if (element.value.trim() === "") {
-          element.classList.remove("");
-          element.classList.add("bg-red-400");
-        } else {
-          element.classList.remove("bg-red-400");
-          element.classList.add("");
-        }
-      });
-      alert("Please enter valid values in all fields.");
-    } else {
-      alert("Your message has been sent successfully!");
-    }
-  }; /*
-  const RegisterMsg = async (name: string, email: string, msg: string) => {
-    area_form.addEventListener("submit", () => {});
-    alert(`Fullname:${name} email:${email} message:${msg}`);
-  };*
-  return (
-    <footer className="w-full flex items-center justify-center pt-6">
-      <div className="bg-slate-950 flex justify-center items-center flex-wrap flex-col gap-5 w-full">
-        <form id="area-form" className="grid min-w-80" onSubmit={handleMessage}>
-          <label
-            htmlFor="full-name"
-            className="text-xl font-medium cursor-pointer"
-          >
-            Full Name
-          </label>
-          <input
-            type="text"
-            name="full-name"
-            id="full-name"
-            className="h-9 outline-none px-2 text-black text-xl  placeholder-shown:bg-white focus:bg-slate-300 placeholder-slate-800"
-            placeholder="Enter your full name"
-          />
-          <label
-            htmlFor="email"
-            className="text-xl font-medium cursor-pointer pt-3"
-          >
-            Email Address
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="h-9 outline-none px-2 text-black text-xl  placeholder-shown:bg-white focus:bg-slate-300 placeholder-slate-800"
-            placeholder="Enter your email address"
-          />
-          <label
-            htmlFor="textarea"
-            className="text-xl font-medium cursor-pointer pt-3"
-          >
-            Message
-          </label>
-          <textarea
-            name="message"
-            id="textarea"
-            className="h-36 resize-none appearance-none outline-none border-none  px-2 text-black text-xl  placeholder-shown:bg-white focus:bg-slate-300 placeholder-slate-800 "
-            placeholder="Write your message here"
-          ></textarea>
-          <button
-            id="submit-msg"
-            type="submit"
-            className="mt-5 bg-indigo-400 text-2xl font-medium text-black h-10 rounded-md hover:bg-indigo-500 active:bg-indigo-300"
-          >
-            Send Message
-          </button>
-        </form>
-        <p className="w-full h-12 mt-5 bg-black flex items-center justify-center gap-5">
-          {" "}
-          <button className="bg-gray-300 text-black text-xl w-16 rounded-md hover:bg-slate-400">
-            <a
-              href="https://github.com/Mamadou-mbaye/portfolio-ts"
-              target="_blank"
-            >
-              Code
-            </a>
-          </button>
-          &copy; 2024 Modu. Tutti i diritti riservati
-        </p>
-      </div>
-    </footer>
-  );
-};
-export default Footer;
-*/

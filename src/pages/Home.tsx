@@ -6,55 +6,18 @@ const About = lazy(() => import("../components/About"));
 const Portfolio = lazy(() => import("../components/Portfolio"));
 const Skills = lazy(() => import("../components/Skills"));
 const Tecnologies = lazy(() => import("../components/Tecnologies"));
-
-/*const area_form = document.getElementById("area-form") as HTMLFormElement;
-const full_name = document.getElementById("full-name") as HTMLInputElement;
-const email = document.getElementById("email") as HTMLInputElement;
-const textarea = document.getElementById("textarea") as HTMLInputElement;
-const submit_msg = document.getElementById("submit-msg") as HTMLButtonElement;
-
-const isEmailValid = (email: string): boolean => {
-  // Regex per validare un indirizzo email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
-
-const handleMessage = (): void => {
-  submit_msg.addEventListener("click", (event) => {
-    const full_name_value = full_name.value.trim();
-    const email_value = email.value.trim();
-    const textarea_value = textarea.value.trim();
-
-    const msg_input = [full_name, email, textarea];
-
-    const isFullNameValid = full_name_value !== "";
-    const isEmailValidFlag = isEmailValid(email_value);
-    const isTextareaValid = textarea_value !== "";
-    event.preventDefault();
-    if (!isFullNameValid || !isEmailValidFlag || !isTextareaValid) {
-      msg_input.forEach((element) => {
-        if (element.value.trim() === "") {
-          element.classList.remove("bg-green-400");
-          element.classList.add("bg-red-400");
-        } else {
-          element.classList.remove("bg-red-400");
-          element.classList.add("bg-green-400");
-        }
-      });
-      alert("Please enter valid values in all fields.");
-    } else {
-      alert("Your message has been sent successfully!");
-    }
-  });
-};
-const RegisterMsg = async (name: string, email: string, msg: string) => {
-  area_form.addEventListener("submit", () => {});
-  alert(`Fullname:${name} email:${email} message:${msg}`);
-};
-handleMessage();
-
-*/
-const Home = () => {
+interface HeaderProps {
+  homeRef: React.RefObject<HTMLDivElement>;
+  aboutRef: React.RefObject<HTMLDivElement>;
+  portfolioRef: React.RefObject<HTMLDivElement>;
+  contactRef: React.RefObject<HTMLDivElement>;
+}
+const Home: React.FC<HeaderProps> = ({
+  homeRef,
+  aboutRef,
+  portfolioRef,
+  contactRef,
+}) => {
   const [infoContent, setInfoContent] = useState(<About />);
   const handleAboutClick = () => {
     startTransition(() => {
@@ -82,7 +45,7 @@ const Home = () => {
       id="main"
       className="w-4/5 min-w-80 min-h-screen flex flex-col gap-5 items-center justify-self-center"
     >
-      <section id="section" className="w-full">
+      <section id="section" className="w-full" ref={homeRef}>
         <div className="h-48 flex flex-col justify-center items-center gap-4">
           <h3 className="text-4xl">Web Developer</h3>
           <p className="text-xl text-center text-balance min-w-80  w-96 p-0 m-0 ">
@@ -125,6 +88,7 @@ const Home = () => {
               id="about"
               className="text-xl cursor-pointer hover:text-gray-400"
               onClick={handleAboutClick}
+              ref={aboutRef}
             >
               About Me
             </h3>
@@ -132,6 +96,7 @@ const Home = () => {
               id="portfolio"
               className="text-xl cursor-pointer hover:text-gray-400"
               onClick={handlePortfolioClick}
+              ref={portfolioRef}
             >
               Portfolio
             </h3>
@@ -163,7 +128,7 @@ const Home = () => {
         className="w-full flex justify-center items-center flex-col gap-5 p-0 m-0"
       >
         <div id="img-container" className="w-72 h-80 rounded-3xl"></div>
-        <div id="social-links" className="text-5xl flex gap-4">
+        <div id="social-links" className="text-5xl flex gap-4" ref={contactRef}>
           <a
             href="https://github.com/Mamadou-mbaye"
             target="_blank"

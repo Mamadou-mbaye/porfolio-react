@@ -1,20 +1,30 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+interface HeaderProps {
+  scrollToSection: (ref: React.RefObject<HTMLDivElement>) => void;
+  homeRef: React.RefObject<HTMLDivElement>;
+  aboutRef: React.RefObject<HTMLDivElement>;
+  portfolioRef: React.RefObject<HTMLDivElement>;
+  contactRef: React.RefObject<HTMLDivElement>;
+}
 
-const Header = () => {
-  //const body: HTMLBodyElement = document.body as HTMLBodyElement;
+const Header: React.FC<HeaderProps> = ({
+  scrollToSection,
+  homeRef,
+  aboutRef,
+  portfolioRef,
+  contactRef,
+}) => {
   const [bodyWidth, setBodyWidth] = useState(window.innerWidth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   useEffect(() => {
     const handleResize = () => {
       setBodyWidth(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
     handleMenu();
-    /*return () => {
-      window.removeEventListener("resize", handleResize);
-    };*/
   }, [bodyWidth]);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -74,17 +84,37 @@ const Header = () => {
             isMenuOpen ? "flex-col" : "hidden"
           }`}
         >
-          <li className="hover:text-gray-300">
-            <a href="#main">Home</a>
+          <li
+            className="hover:text-gray-300"
+            onClick={() => {
+              scrollToSection(homeRef);
+            }}
+          >
+            <span className="cursor-pointer">Home</span>
           </li>
-          <li className="hover:text-gray-300">
-            <a href="#info">About</a>
+          <li
+            className="hover:text-gray-300"
+            onClick={() => {
+              scrollToSection(aboutRef);
+            }}
+          >
+            <span className="cursor-pointer">About</span>
           </li>
-          <li className="hover:text-gray-300">
-            <a href="#info">Portfolio</a>
+          <li
+            className="hover:text-gray-300"
+            onClick={() => {
+              scrollToSection(portfolioRef);
+            }}
+          >
+            <span className="cursor-pointer">Portfolio</span>
           </li>
-          <li className="hover:text-gray-300">
-            <a href="#social-links">Contact</a>
+          <li
+            className="hover:text-gray-300"
+            onClick={() => {
+              scrollToSection(contactRef);
+            }}
+          >
+            <span className="cursor-pointer">Contact</span>
           </li>
         </ul>
       </nav>

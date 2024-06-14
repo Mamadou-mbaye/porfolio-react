@@ -1,5 +1,5 @@
 h1 {
-  font-family: "Barlow Semi Condensed", sans-serif; /* Use Barlow Semi Condensed as primary font */
+  font-family: "Barlow Semi Condensed", sans-serif;
   font-weight: 700;
 }
 #img-container {
@@ -16,4 +16,3 @@ textarea {
 textarea::-webkit-scrollbar {
   display: none;
 }
-
