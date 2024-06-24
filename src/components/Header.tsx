@@ -24,39 +24,38 @@ const Header: React.FC<HeaderProps> = ({
       setBodyWidth(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
+    const handleMenu = () => {
+      const header: HTMLElement = document.getElementById(
+        "header"
+      ) as HTMLElement;
+      const nav_links: HTMLElement = document.getElementById(
+        "nav-links"
+      ) as HTMLElement;
+      const menu: HTMLElement = document.querySelector("#menu") as HTMLElement;
+      const links: HTMLElement = document.querySelector(
+        "#links"
+      ) as HTMLElement;
+
+      if (bodyWidth < 768) {
+        // Rimuove la classe "hidden" dal menu e aggiunge la classe "hidden" ai links
+        menu.classList.remove("hidden");
+        links.classList.add("hidden");
+        nav_links.classList.remove("w-3/4");
+      } else {
+        header.classList.add("justify-between");
+        header.classList.remove("flex-col");
+        menu.classList.remove("justify-self-center");
+        menu.classList.add("hidden");
+        links.classList.remove("hidden");
+        links.classList.remove("flex-col");
+        nav_links.classList.add("w-3/4");
+      }
+    };
     handleMenu();
   }, [bodyWidth]);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  const handleMenu = () => {
-    const header: HTMLElement = document.getElementById(
-      "header"
-    ) as HTMLElement;
-    const nav_links: HTMLElement = document.getElementById(
-      "nav-links"
-    ) as HTMLElement;
-    const menu: HTMLElement = document.querySelector("#menu") as HTMLElement;
-    const links: HTMLElement = document.querySelector("#links") as HTMLElement;
-
-    if (bodyWidth < 768) {
-      // Rimuove la classe "hidden" dal menu e aggiunge la classe "hidden" ai links
-      menu.classList.remove("hidden");
-      links.classList.add("hidden");
-      nav_links.classList.remove("w-3/4");
-    } else {
-      header.classList.add("justify-between");
-      header.classList.remove("flex-col");
-      menu.classList.remove("justify-self-center");
-      menu.classList.add("hidden");
-      links.classList.remove("hidden");
-      links.classList.remove("flex-col");
-      nav_links.classList.add("w-3/4");
-    }
-  };
-  useEffect(() => {
-    handleMenu();
-  }, []);
 
   return (
     <header
