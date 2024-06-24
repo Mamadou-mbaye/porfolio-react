@@ -1,4 +1,4 @@
-import { startTransition, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { lazy } from "react";
@@ -18,7 +18,9 @@ const Home: React.FC<HeaderProps> = ({
   portfolioRef,
   contactRef,
 }) => {
+  const [bodyWidth, setBodyWidth] = useState(window.innerWidth);
   const [infoContent, setInfoContent] = useState(<About />);
+
   const handleAboutClick = () => {
     startTransition(() => {
       setInfoContent(<About />);
@@ -39,13 +41,35 @@ const Home: React.FC<HeaderProps> = ({
       setInfoContent(<Tecnologies />);
     });
   };
-
+  useEffect(() => {
+    const handleResize = () => {
+      setBodyWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    const handleDisplayTitles = ()=>
+      {
+        const titles: HTMLElement = document.getElementById(
+          "titles"
+        ) as HTMLElement;
+        
+        if (bodyWidth < 500){
+          titles.classList.add("flex-col")
+        }else{
+          titles.classList.remove("flex-col")
+        }
+      }
+      handleDisplayTitles()
+  }, [bodyWidth]);
   return (
     <main
       id="main"
       className="w-4/5 min-w-80 min-h-screen flex flex-col gap-5 items-center justify-self-center"
     >
-      <section id="section" className="w-full flex flex-col items-center" ref={homeRef}>
+      <section
+        id="section"
+        className="w-full flex flex-col items-center"
+        ref={homeRef}
+      >
         <div className="h-48 flex flex-col justify-center items-center gap-4">
           <h3 className="text-4xl">Web Developer</h3>
           <p className="text-xl text-center text-balance min-w-80  w-96 p-0 m-0 ">
@@ -83,10 +107,10 @@ const Home: React.FC<HeaderProps> = ({
           id="info"
           className="grid gap-4 place-items-center mb-4 divide-y-2 divide-solid max-w-3xl "
         >
-          <div id="titles" className="flex justify-evenly w-full">
+          <div id="titles" className="flex justify-evenly w-full flex-wrap gap-1">
             <h3
               id="about"
-              className="text-xl cursor-pointer hover:text-gray-400"
+              className="text-xl cursor-pointer hover:text-gray-400  min-w-16 text-center"
               onClick={handleAboutClick}
               ref={aboutRef}
             >
@@ -94,7 +118,7 @@ const Home: React.FC<HeaderProps> = ({
             </h3>
             <h3
               id="portfolio"
-              className="text-xl cursor-pointer hover:text-gray-400"
+              className="text-xl cursor-pointer hover:text-gray-400  min-w-16 text-center"
               onClick={handlePortfolioClick}
               ref={portfolioRef}
             >
@@ -102,14 +126,14 @@ const Home: React.FC<HeaderProps> = ({
             </h3>
             <h3
               id="skills"
-              className="text-xl cursor-pointer hover:text-gray-400"
+              className="text-xl cursor-pointer hover:text-gray-400 min-w-16 text-center"
               onClick={handleSkillsClick}
             >
               Skills
             </h3>
             <h3
               id="tecnologies"
-              className="text-xl cursor-pointer hover:text-gray-400"
+              className="text-xl cursor-pointer hover:text-gray-400  min-w-16 text-center"
               onClick={handleTecnologiesClick}
             >
               Tecnologies
