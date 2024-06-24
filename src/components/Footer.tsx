@@ -133,7 +133,7 @@ const Footer = () => {
             Send Message
           </button>
         </form>
-        <p className="w-full h-12 mt-5 bg-black flex items-center justify-center gap-5">
+        <p className="w-full h-16 mt-5 mb-2 bg-black flex items-center justify-center gap-5">
           <button className="bg-gray-300 text-black text-xl w-16 rounded-md hover:bg-slate-400">
             <a
               href="https://github.com/Mamadou-mbaye/porfolio-react.git"
