@@ -45,7 +45,7 @@ const Home: React.FC<HeaderProps> = ({
       id="main"
       className="w-4/5 min-w-80 min-h-screen flex flex-col gap-5 items-center justify-self-center"
     >
-      <section id="section" className="w-full" ref={homeRef}>
+      <section id="section" className="w-full flex flex-col items-center" ref={homeRef}>
         <div className="h-48 flex flex-col justify-center items-center gap-4">
           <h3 className="text-4xl">Web Developer</h3>
           <p className="text-xl text-center text-balance min-w-80  w-96 p-0 m-0 ">
@@ -81,7 +81,7 @@ const Home: React.FC<HeaderProps> = ({
         </div>
         <div
           id="info"
-          className="grid gap-4 place-items-center mb-4 divide-y-2 divide-solid"
+          className="grid gap-4 place-items-center mb-4 divide-y-2 divide-solid max-w-3xl "
         >
           <div id="titles" className="flex justify-evenly w-full">
             <h3

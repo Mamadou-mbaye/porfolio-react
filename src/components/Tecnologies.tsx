@@ -24,7 +24,14 @@ const Tecnologies = () => {
           <strong>Sequelize</strong>
           <br /> An ORM for Node.js that I use for managing database
           interactions in my projects.
+        </li><hr className="w-3/4 mx-auto " />
+        <li className="max-w-2xl w-auto">
+          <strong>TypeORM</strong>
+          <br />
+          An ORM for Node.js (with Typescript) that I used for managing database interactions in a
+          project during my internship.
         </li>
+
         <hr className="w-3/4 mx-auto " />
         <li className="max-w-2xl w-auto">
           <strong>Git & GitHub</strong>

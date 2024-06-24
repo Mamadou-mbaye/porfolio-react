@@ -54,7 +54,7 @@ const Footer = () => {
 
   const RegisterMsg = async (name: string, email: string, msg: string) => {
     try {
-      const response = await fetch("http://localhost:8080/message/register", {
+      const response = await fetch("https://mode-portfolio-server.onrender.com/message/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
