@@ -78,26 +78,38 @@ const Home: React.FC<HeaderProps> = ({
           </p>
         </div>
         <div className="min-h-52 flex flex-col justify-center items-center gap-4">
-          <h3 className="text-4xl">Tech Stack</h3>
+          <h3 className="text-4xl" translate="no">
+            Tech Stack
+          </h3>
           <div className="flex flex-row gap-4 flex-wrap justify-center items-center text-xl">
             <p>
-              <span className="mx-2">HTML</span>
+              <span className="mx-2" translate="no">
+                HTML
+              </span>
               <i className="fa-brands fa-html5"></i>
             </p>
             <p>
-              <span className="mx-2">CSS</span>
+              <span className="mx-2" translate="no">
+                CSS
+              </span>
               <i className="fa-brands fa-css3-alt"></i>
             </p>
             <p>
-              <span className="mx-2">JAVASCRIPT</span>
+              <span className="mx-2" translate="no">
+                JAVASCRIPT
+              </span>
               <i className="fa-brands fa-js"></i>
             </p>
             <p>
-              <span className="mx-2">REACT</span>
+              <span className="mx-2" translate="no">
+                REACT
+              </span>
               <i className="fa-brands fa-react"></i>
             </p>
             <p>
-              <span className="mx-2">JAVA</span>
+              <span className="mx-2" translate="no">
+                JAVA
+              </span>
               <i className="fa-brands fa-java"></i>
             </p>
           </div>

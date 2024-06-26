@@ -54,13 +54,16 @@ const Footer = () => {
 
   const RegisterMsg = async (name: string, email: string, msg: string) => {
     try {
-      const response = await fetch("https://mode-portfolio-server.onrender.com/message/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ fullName: name, email: email, message: msg }),
-      });
+      const response = await fetch(
+        "https://mode-portfolio-server.onrender.com/message/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ fullName: name, email: email, message: msg }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -143,7 +146,7 @@ const Footer = () => {
               Code
             </a>
           </button>
-          &copy; 2024 Modu. Tutti i diritti riservati
+          &copy; 2024 Modu. All rights reserved.
         </p>
       </div>
     </footer>
