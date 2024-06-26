@@ -46,19 +46,18 @@ const Home: React.FC<HeaderProps> = ({
       setBodyWidth(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
-    const handleDisplayTitles = ()=>
-      {
-        const titles: HTMLElement = document.getElementById(
-          "titles"
-        ) as HTMLElement;
-        
-        if (bodyWidth < 500){
-          titles.classList.add("flex-col")
-        }else{
-          titles.classList.remove("flex-col")
-        }
+    const handleDisplayTitles = () => {
+      const titles: HTMLElement = document.getElementById(
+        "titles"
+      ) as HTMLElement;
+
+      if (bodyWidth < 500) {
+        titles.classList.add("flex-col");
+      } else {
+        titles.classList.remove("flex-col");
       }
-      handleDisplayTitles()
+    };
+    handleDisplayTitles();
   }, [bodyWidth]);
   return (
     <main
@@ -105,12 +104,15 @@ const Home: React.FC<HeaderProps> = ({
         </div>
         <div
           id="info"
-          className="grid gap-4 place-items-center mb-4 divide-y-2 divide-solid max-w-3xl "
+          className="grid gap-4 place-items-center mb-4 divide-y-2 divide-solid max-w-3xl"
         >
-          <div id="titles" className="flex justify-evenly w-full flex-wrap gap-1">
+          <div
+            id="titles"
+            className="flex justify-evenly w-full flex-wrap gap-2"
+          >
             <h3
               id="about"
-              className="text-xl cursor-pointer hover:text-gray-400  min-w-16 text-center"
+              className="text-xl cursor-pointer text-black bg-stone-200 rounded-lg min-w-24 text-center hover:bg-stone-400"
               onClick={handleAboutClick}
               ref={aboutRef}
             >
@@ -118,7 +120,7 @@ const Home: React.FC<HeaderProps> = ({
             </h3>
             <h3
               id="portfolio"
-              className="text-xl cursor-pointer hover:text-gray-400  min-w-16 text-center"
+              className="text-xl cursor-pointer text-black bg-stone-200 rounded-lg min-w-24 text-center hover:bg-stone-400"
               onClick={handlePortfolioClick}
               ref={portfolioRef}
             >
@@ -126,14 +128,14 @@ const Home: React.FC<HeaderProps> = ({
             </h3>
             <h3
               id="skills"
-              className="text-xl cursor-pointer hover:text-gray-400 min-w-16 text-center"
+              className="text-xl cursor-pointer text-black bg-stone-200 rounded-lg min-w-20 text-center hover:bg-stone-400"
               onClick={handleSkillsClick}
             >
               Skills
             </h3>
             <h3
               id="tecnologies"
-              className="text-xl cursor-pointer hover:text-gray-400  min-w-16 text-center"
+              className="text-xl cursor-pointer text-black bg-stone-200 rounded-lg min-w-28 text-center hover:bg-stone-400"
               onClick={handleTecnologiesClick}
             >
               Tecnologies
